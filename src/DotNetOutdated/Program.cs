@@ -424,7 +424,7 @@ namespace DotNetOutdated
             if (OutputFilename != null)
             {
                 Console.WriteLine();
-                Console.WriteLine($"Generating {OutputFileFormat.ToString().ToUpper()} report...");
+                Console.WriteLine($@"Generating {OutputFileFormat.ToString().ToUpper()} report...");
                 string reportContent;
                 switch (OutputFileFormat)
                 {
@@ -437,7 +437,7 @@ namespace DotNetOutdated
                 }
                 _fileSystem.File.WriteAllText(OutputFilename, reportContent);
 
-                Console.WriteLine($"Report written to {OutputFilename}");
+                Console.WriteLine($@"Report written to {OutputFilename}");
                 Console.WriteLine();
             }
         }

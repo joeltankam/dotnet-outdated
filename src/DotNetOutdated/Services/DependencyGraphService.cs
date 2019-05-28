@@ -42,11 +42,9 @@ namespace DotNetOutdated.Services
                 var dependencyGraphText = _fileSystem.File.ReadAllText(dgOutput);
                 return new DependencyGraphSpec(JsonConvert.DeserializeObject<JObject>(dependencyGraphText));
             }
-            else
-            {
-                throw new CommandValidationException($"Unable to process the project `{projectPath}. Are you sure this is a valid .NET Core or .NET Standard project type?" +
-                                                     $"\r\n\r\nHere is the full error message returned from the Microsoft Build Engine:\r\n\r\n" + runStatus.Output);
-            }
+
+            throw new CommandValidationException($"Unable to process the project `{projectPath}. Are you sure this is a valid .NET Core or .NET Standard project type?" +
+                                                 $"\r\n\r\nHere is the full error message returned from the Microsoft Build Engine:\r\n\r\n" + runStatus.Output);
         }
 
         /// <summary>
@@ -90,10 +88,8 @@ namespace DotNetOutdated.Services
 
                 return DependencyGraphSpec.Union(dependencyGraphs);
             }
-            else
-            {
-                throw new CommandValidationException($"Unable to read the solution '{solutionPath}'.\r\n\r\nHere is the full error message returned from the dotnet:\r\n\r\n{runStatus.Output}");
-            }
+
+            throw new CommandValidationException($"Unable to read the solution '{solutionPath}'.\r\n\r\nHere is the full error message returned from the dotnet:\r\n\r\n{runStatus.Output}");
         }
 
         private bool IsMicrosoftSdkProject(string projectPath)

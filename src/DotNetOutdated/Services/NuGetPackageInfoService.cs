@@ -15,7 +15,7 @@ namespace DotNetOutdated.Services
 {
     internal class NuGetPackageInfoService : INuGetPackageInfoService, IDisposable
     {
-        private IEnumerable<PackageSource> _enabledSources = null;
+        private IEnumerable<PackageSource> _enabledSources;
         private readonly SourceCacheContext _context;
         private readonly Dictionary<string, PackageMetadataResource> _metadataResources = new Dictionary<string, PackageMetadataResource>();
 

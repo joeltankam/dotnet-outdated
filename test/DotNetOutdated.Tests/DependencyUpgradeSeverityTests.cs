@@ -75,7 +75,7 @@ namespace DotNetOutdated.Tests
             Assert.Equal(DependencyUpgradeSeverity.None, dependency.UpgradeSeverity);
         }
 
-        private AnalyzedDependency CreateAnalyzedDependency(NuGetVersion resolvedVersion, NuGetVersion latestVersion)
+        private static AnalyzedDependency CreateAnalyzedDependency(NuGetVersion resolvedVersion, NuGetVersion latestVersion)
         {
             return new AnalyzedDependency(new Dependency("Does not matter", VersionRange.All, resolvedVersion, false, false, false), latestVersion);
         }

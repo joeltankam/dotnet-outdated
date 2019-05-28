@@ -82,7 +82,7 @@ namespace DotNetOutdated.Services
             return projects;
         }
 
-        private void AddDependencies(TargetFramework targetFramework, LockFileTargetLibrary parentLibrary, LockFileTarget target, int level, int transitiveDepth)
+        private static void AddDependencies(TargetFramework targetFramework, LockFileTargetLibrary parentLibrary, LockFileTarget target, int level, int transitiveDepth)
         {
             if (parentLibrary?.Dependencies != null)
             {

@@ -97,7 +97,7 @@ namespace DotNetOutdated.Services
             using (var stream = _fileSystem.FileStream.Create(projectPath, FileMode.Open, FileAccess.Read))
             {
                 var xml = XDocument.Load(stream);
-                return xml.Root.Name.LocalName == "Project" && xml.Root.Attribute("Sdk") != null;
+                return xml.Root?.Name.LocalName == "Project" && xml.Root.Attribute("Sdk") != null;
             }
         }
 

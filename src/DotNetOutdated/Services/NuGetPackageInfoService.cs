@@ -108,7 +108,7 @@ namespace DotNetOutdated.Services
                             {
                                 allVersions.Add(localPackageSearchMetadata.Identity.Version);
                             }
-                        };
+                        }
                     }
                 }
                 catch(HttpRequestException)

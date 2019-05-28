@@ -42,7 +42,7 @@ namespace DotNetOutdated.Services
         {
             try
             {
-                string resourceUrl = source.AbsoluteUri;
+                var resourceUrl = source.AbsoluteUri;
 
                 var resource = _metadataResources.GetValueOrDefault(resourceUrl);
                 if (resource == null)

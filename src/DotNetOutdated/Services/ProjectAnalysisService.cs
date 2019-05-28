@@ -36,7 +36,7 @@ namespace DotNetOutdated.Services
                 _dotNetRestoreService.Restore(packageSpec.FilePath);
                 
                 // Load the lock file
-                string lockFilePath = _fileSystem.Path.Combine(packageSpec.RestoreMetadata.OutputPath, "project.assets.json");
+                var lockFilePath = _fileSystem.Path.Combine(packageSpec.RestoreMetadata.OutputPath, "project.assets.json");
                 var lockFile = LockFileUtilities.GetLockFile(lockFilePath, NullLogger.Instance);
 
                 // Create a project
@@ -57,7 +57,7 @@ namespace DotNetOutdated.Services
                         {
                            var projectLibrary = target.Libraries.FirstOrDefault(library => string.Equals(library.Name, projectDependency.Name, StringComparison.OrdinalIgnoreCase));
 
-                            bool isDevelopmentDependency = false;
+                            var isDevelopmentDependency = false;
                             if (projectLibrary != null)
                             {
                                 // Determine whether this is a development dependency

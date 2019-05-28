@@ -22,7 +22,7 @@ namespace DotNetOutdated
         {
             get
             {
-                string title = Name;
+                var title = Name;
 
                 if (IsAutoReferenced)
                     title += " [A]";

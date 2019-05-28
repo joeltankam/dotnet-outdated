@@ -31,7 +31,7 @@ namespace DotNetOutdated.Services
                 return GenerateSolutionDependencyGraph(projectPath);
             }
 
-            string dgOutput = _fileSystem.Path.Combine(_fileSystem.Path.GetTempPath(), _fileSystem.Path.GetTempFileName());
+            var dgOutput = _fileSystem.Path.Combine(_fileSystem.Path.GetTempPath(), _fileSystem.Path.GetTempFileName());
                 
             string[] arguments = {"msbuild", $"\"{projectPath}\"", "/t:GenerateRestoreGraphFile", $"/p:RestoreGraphOutputPath=\"{dgOutput}\""};
 
@@ -39,7 +39,7 @@ namespace DotNetOutdated.Services
 
             if (runStatus.IsSuccess)
             {
-                string dependencyGraphText = _fileSystem.File.ReadAllText(dgOutput);
+                var dependencyGraphText = _fileSystem.File.ReadAllText(dgOutput);
                 return new DependencyGraphSpec(JsonConvert.DeserializeObject<JObject>(dependencyGraphText));
             }
             else
@@ -55,7 +55,7 @@ namespace DotNetOutdated.Services
         /// </summary>
         private DependencyGraphSpec GenerateSolutionDependencyGraph(string solutionPath)
         {
-            string directoryPath = _fileSystem.Path.GetDirectoryName(solutionPath);
+            var directoryPath = _fileSystem.Path.GetDirectoryName(solutionPath);
             string[] arguments = { "sln", $"\"{solutionPath}\"", "list" };
             var runStatus = _dotNetRunner.Run(directoryPath, arguments);
             
@@ -64,13 +64,13 @@ namespace DotNetOutdated.Services
                 var dependencyGraphs = new List<DependencyGraphSpec>();
                 using (var reader = new StringReader(runStatus.Output))
                 {
-                    bool readingRows = false;
-                    string line = reader.ReadLine();
+                    var readingRows = false;
+                    var line = reader.ReadLine();
                     while (line != null)
                     {
                         if (readingRows)
                         {
-                            string projectPath = _fileSystem.Path.Combine(directoryPath, line);
+                            var projectPath = _fileSystem.Path.Combine(directoryPath, line);
                             if (IsMicrosoftSdkProject(projectPath))
                             {
                                 dependencyGraphs.Add(GenerateDependencyGraph(projectPath));
@@ -112,7 +112,7 @@ namespace DotNetOutdated.Services
                 return false;
             }
 
-            for (int i = 0; i < line.Length; i++)
+            for (var i = 0; i < line.Length; i++)
             {
                 if (line[i] != '-')
                 {

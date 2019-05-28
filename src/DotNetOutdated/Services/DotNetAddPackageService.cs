@@ -16,9 +16,9 @@ namespace DotNetOutdated.Services
         
         public RunStatus AddPackage(string projectPath, string packageName, string frameworkName, NuGetVersion version)
         {
-            string projectName = _fileSystem.Path.GetFileName(projectPath);
+            var projectName = _fileSystem.Path.GetFileName(projectPath);
             
-            string[] arguments = new[] {"add", $"\"{projectName}\"", "package", packageName, "-v", version.ToString(), "-f", $"\"{frameworkName}\""};
+            var arguments = new[] {"add", $"\"{projectName}\"", "package", packageName, "-v", version.ToString(), "-f", $"\"{frameworkName}\""};
 
             return _dotNetRunner.Run(_fileSystem.Path.GetDirectoryName(projectPath), arguments);
         }

@@ -140,7 +140,7 @@ namespace DotNetOutdated
                 // Get all the projects
                 console.Write("Discovering projects...");
                 
-                string projectPath = _projectDiscoveryService.DiscoverProject(Path);
+                var projectPath = _projectDiscoveryService.DiscoverProject(Path);
 
                 if (!console.IsOutputRedirected)
                     ClearCurrentConsoleLine();
@@ -205,12 +205,12 @@ namespace DotNetOutdated
 
                 foreach (var package in consolidatedPackages)
                 {
-                    bool upgrade = true;
+                    var upgrade = true;
                     
                     if (Upgrade.UpgradeType == UpgradeType.Prompt)
                     {
-                        string resolvedVersion = package.ResolvedVersion?.ToString() ?? "";
-                        string latestVersion = package.LatestVersion?.ToString() ?? "";
+                        var resolvedVersion = package.ResolvedVersion?.ToString() ?? "";
+                        var latestVersion = package.LatestVersion?.ToString() ?? "";
 
                         console.Write($"The package ");
                         console.Write(package.Description, Constants.ReporingColors.PackageName);
@@ -318,7 +318,7 @@ namespace DotNetOutdated
                         .OrderBy(d => d.Name)
                         .ToList();
 
-                    int[] columnWidths = dependencies.DetermineColumnWidths();
+                    var columnWidths = dependencies.DetermineColumnWidths();
 
                     foreach (var dependency in dependencies)
                     {
@@ -457,7 +457,7 @@ namespace DotNetOutdated
         
         public static void ClearCurrentConsoleLine()
         {
-            int currentLineCursor = Console.CursorTop;
+            var currentLineCursor = Console.CursorTop;
             Console.SetCursorPosition(0, Console.CursorTop);
             Console.Write(new string(' ', Console.BufferWidth));
             Console.SetCursorPosition(0, currentLineCursor);

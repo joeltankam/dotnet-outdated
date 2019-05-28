@@ -53,7 +53,7 @@ namespace DotNetOutdated.Models
         {
             get
             {
-                string description = Name;
+                var description = Name;
 
                 if (IsAutoReferenced)
                     description += " [A]";

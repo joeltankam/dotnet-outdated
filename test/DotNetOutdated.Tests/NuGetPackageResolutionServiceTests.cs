@@ -16,7 +16,7 @@ namespace DotNetOutdated.Tests
 
         public NuGetPackageResolutionServiceTests()
         {
-            List<NuGetVersion> availableVersions = new List<NuGetVersion>
+            var availableVersions = new List<NuGetVersion>
             {
                 new NuGetVersion("1.1.0"),
                 new NuGetVersion("1.2.0"),

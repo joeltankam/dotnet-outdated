@@ -28,7 +28,7 @@ namespace DotNetOutdated.Tests
                 .Callback((string directory, string[] arguments) =>
                 {
                     // Grab the temp filename that was passed...
-                    string tempFileName = arguments[3].Replace("/p:RestoreGraphOutputPath=", string.Empty).Trim('"');
+                    var tempFileName = arguments[3].Replace("/p:RestoreGraphOutputPath=", string.Empty).Trim('"');
 
                     // ... and stuff it with our dummy dependency graph
                     mockFileSystem.AddFileFromEmbeddedResource(tempFileName, GetType().Assembly, "DotNetOutdated.Tests.TestData.test.dg");
@@ -70,7 +70,7 @@ namespace DotNetOutdated.Tests
             // Arrange
             var dotNetRunner = new Mock<IDotNetRunner>();
 
-            string solutionProjects = string.Join(Environment.NewLine, "Project(s)", "-----------", _project1Path, _project2Path);
+            var solutionProjects = string.Join(Environment.NewLine, "Project(s)", "-----------", _project1Path, _project2Path);
             dotNetRunner.Setup(runner => runner.Run(It.IsAny<string>(), It.Is<string[]>(a => a[0] == "sln")))
                 .Returns(new RunStatus(solutionProjects, string.Empty, 0));
 
@@ -79,10 +79,10 @@ namespace DotNetOutdated.Tests
                 .Callback((string directory, string[] arguments) =>
                 {
                     // Grab the temp filename that was passed...
-                    string tempFileName = arguments[3].Replace("/p:RestoreGraphOutputPath=", string.Empty).Trim('"');
+                    var tempFileName = arguments[3].Replace("/p:RestoreGraphOutputPath=", string.Empty).Trim('"');
 
                     // ... and stuff it with our dummy dependency graph
-                    string dependencyGraphFile = arguments[1] == '\"' + _project1Path + '\"' ? "test.dg" : "empty.dg";
+                    var dependencyGraphFile = arguments[1] == '\"' + _project1Path + '\"' ? "test.dg" : "empty.dg";
                     mockFileSystem.AddFileFromEmbeddedResource(tempFileName, GetType().Assembly, "DotNetOutdated.Tests.TestData." + dependencyGraphFile);
                 });
 
@@ -111,7 +111,7 @@ namespace DotNetOutdated.Tests
             // Arrange
             var dotNetRunner = new Mock<IDotNetRunner>();
 
-            string solutionProjects = string.Join(Environment.NewLine, "Project(s)", "-----------", _project1Path, _project2Path);
+            var solutionProjects = string.Join(Environment.NewLine, "Project(s)", "-----------", _project1Path, _project2Path);
             dotNetRunner.Setup(runner => runner.Run(It.IsAny<string>(), It.Is<string[]>(a => a[0] == "sln")))
                 .Returns(new RunStatus(solutionProjects, string.Empty, 0));
 
@@ -120,10 +120,10 @@ namespace DotNetOutdated.Tests
                 .Callback((string directory, string[] arguments) =>
                 {
                     // Grab the temp filename that was passed...
-                    string tempFileName = arguments[3].Replace("/p:RestoreGraphOutputPath=", string.Empty).Trim('"');
+                    var tempFileName = arguments[3].Replace("/p:RestoreGraphOutputPath=", string.Empty).Trim('"');
 
                     // ... and stuff it with our dummy dependency graph
-                    string dependencyGraphFile = arguments[1] == '\"' + _project1Path + '\"' ? "test.dg" : "empty.dg";
+                    var dependencyGraphFile = arguments[1] == '\"' + _project1Path + '\"' ? "test.dg" : "empty.dg";
                     mockFileSystem.AddFileFromEmbeddedResource(tempFileName, GetType().Assembly, "DotNetOutdated.Tests.TestData." + dependencyGraphFile);
                 });
 
@@ -152,7 +152,7 @@ namespace DotNetOutdated.Tests
             // Arrange
             var dotNetRunner = new Mock<IDotNetRunner>();
 
-            string solutionProjects = string.Join(Environment.NewLine, "Project(s)", "-----------");
+            var solutionProjects = string.Join(Environment.NewLine, "Project(s)", "-----------");
             dotNetRunner.Setup(runner => runner.Run(It.IsAny<string>(), It.Is<string[]>(a => a[0] == "sln")))
                 .Returns(new RunStatus(solutionProjects, string.Empty, 0));
 

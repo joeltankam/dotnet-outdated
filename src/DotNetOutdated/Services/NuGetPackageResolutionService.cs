@@ -20,13 +20,13 @@ namespace DotNetOutdated.Services
             VersionLock versionLock, PrereleaseReporting prerelease, NuGetFramework targetFrameworkName, string projectFilePath, bool isDevelopmentDependency)
         {
             // Determine whether we are interested in pre-releases
-            bool includePrerelease = referencedVersion.IsPrerelease;
+            var includePrerelease = referencedVersion.IsPrerelease;
             if (prerelease == PrereleaseReporting.Always)
                 includePrerelease = true;
             else if (prerelease == PrereleaseReporting.Never)
                 includePrerelease = false;
 
-            string cacheKey = (packageName + "-" + includePrerelease + "-" + targetFrameworkName).ToLowerInvariant();
+            var cacheKey = (packageName + "-" + includePrerelease + "-" + targetFrameworkName).ToLowerInvariant();
             if (!_cache.TryGetValue(cacheKey, out var allVersions))
             {
                 // Get all the available versions
@@ -45,7 +45,7 @@ namespace DotNetOutdated.Services
             var latestVersionRange = new VersionRange(currentVersionRange, new FloatRange(floatingBehaviour, referencedVersion));
 
             // Use new version range to determine latest version
-            NuGetVersion latestVersion = latestVersionRange.FindBestMatch(allVersions);
+            var latestVersion = latestVersionRange.FindBestMatch(allVersions);
 
             return latestVersion;
         }

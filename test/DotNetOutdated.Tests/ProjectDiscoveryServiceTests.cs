@@ -28,7 +28,7 @@ namespace DotNetOutdated.Tests
             var projectDiscoveryService = new ProjectDiscoveryService(fileSystem);
             
             // Act
-            string project = projectDiscoveryService.DiscoverProject(_path);
+            var project = projectDiscoveryService.DiscoverProject(_path);
             
             // Assert
             Assert.Equal(project, _solution1);
@@ -63,7 +63,7 @@ namespace DotNetOutdated.Tests
             var projectDiscoveryService = new ProjectDiscoveryService(fileSystem);
             
             // Act
-            string project = projectDiscoveryService.DiscoverProject(_path);
+            var project = projectDiscoveryService.DiscoverProject(_path);
             
             // Assert
             Assert.Equal(project, _project1);
@@ -80,7 +80,7 @@ namespace DotNetOutdated.Tests
             var projectDiscoveryService = new ProjectDiscoveryService(fileSystem);
             
             // Act
-            string project = projectDiscoveryService.DiscoverProject(_path);
+            var project = projectDiscoveryService.DiscoverProject(_path);
             
             // Assert
             Assert.Equal(project, _project3);

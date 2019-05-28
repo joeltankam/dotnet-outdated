@@ -11,8 +11,8 @@ namespace DotNetOutdated.Tests
 {
     public class NuGetPackageResolutionServiceTests
     {
-        private string packageName = "MyPackage";
-        private NuGetPackageResolutionService _nuGetPackageResolutionService;
+        private readonly string packageName = "MyPackage";
+        private readonly NuGetPackageResolutionService _nuGetPackageResolutionService;
 
         public NuGetPackageResolutionServiceTests()
         {

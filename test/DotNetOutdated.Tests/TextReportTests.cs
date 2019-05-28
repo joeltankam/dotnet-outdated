@@ -1,11 +1,3 @@
-using System;
-using DotNetOutdated.Models;
-using NuGet.Frameworks;
-using NuGet.Versioning;
-using Xunit;
-using Xunit.Abstractions;
-using DotNetOutdated.Services;
-
 namespace DotNetOutdated.Tests
 {
 //    public class TextReportTests

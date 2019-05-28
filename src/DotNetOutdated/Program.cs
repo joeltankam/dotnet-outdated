@@ -88,18 +88,18 @@ namespace DotNetOutdated
         public static int Main(string[] args)
         {
             using (var services = new ServiceCollection()
-                    .AddSingleton<IConsole, PhysicalConsole>()
-                    .AddSingleton<IReporter>(provider => new ConsoleReporter(provider.GetService<IConsole>()))
-                    .AddSingleton<IFileSystem, FileSystem>()
-                    .AddSingleton<IProjectDiscoveryService, ProjectDiscoveryService>()
-                    .AddSingleton<IProjectAnalysisService, ProjectAnalysisService>()
-                    .AddSingleton<IDotNetRunner, DotNetRunner>()
-                    .AddSingleton<IDependencyGraphService, DependencyGraphService>()
-                    .AddSingleton<IDotNetRestoreService, DotNetRestoreService>()
-                    .AddSingleton<IDotNetAddPackageService, DotNetAddPackageService>()
-                    .AddSingleton<INuGetPackageInfoService, NuGetPackageInfoService>()
-                    .AddSingleton<INuGetPackageResolutionService, NuGetPackageResolutionService>()
-                    .BuildServiceProvider())
+                .AddSingleton<IConsole, PhysicalConsole>()
+                .AddSingleton<IReporter>(provider => new ConsoleReporter(provider.GetService<IConsole>()))
+                .AddSingleton<IFileSystem, FileSystem>()
+                .AddSingleton<IProjectDiscoveryService, ProjectDiscoveryService>()
+                .AddSingleton<IProjectAnalysisService, ProjectAnalysisService>()
+                .AddSingleton<IDotNetRunner, DotNetRunner>()
+                .AddSingleton<IDependencyGraphService, DependencyGraphService>()
+                .AddSingleton<IDotNetRestoreService, DotNetRestoreService>()
+                .AddSingleton<IDotNetAddPackageService, DotNetAddPackageService>()
+                .AddSingleton<INuGetPackageInfoService, NuGetPackageInfoService>()
+                .AddSingleton<INuGetPackageResolutionService, NuGetPackageResolutionService>()
+                .BuildServiceProvider())
             {
                 var app = new CommandLineApplication<Program>
                 {
@@ -368,8 +368,8 @@ namespace DotNetOutdated
                         deps = deps.Where(d => !d.Name.Contains(FilterExclude, StringComparison.InvariantCultureIgnoreCase));                        
 
                     var dependencies = deps.OrderBy(dependency => dependency.IsTransitive)
-                                           .ThenBy(dependency => dependency.Name)
-                                           .ToList();
+                        .ThenBy(dependency => dependency.Name)
+                        .ToList();
 
                     for (var index = 0; index < dependencies.Count; index++)
                     {

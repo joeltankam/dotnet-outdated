@@ -55,7 +55,7 @@ namespace DotNetOutdated.Services
                     {
                         foreach (var projectDependency in targetFrameworkInformation.Dependencies)
                         {
-                           var projectLibrary = target.Libraries.FirstOrDefault(library => string.Equals(library.Name, projectDependency.Name, StringComparison.OrdinalIgnoreCase));
+                            var projectLibrary = target.Libraries.FirstOrDefault(library => string.Equals(library.Name, projectDependency.Name, StringComparison.OrdinalIgnoreCase));
 
                             var isDevelopmentDependency = false;
                             if (projectLibrary != null)

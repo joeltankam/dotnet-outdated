@@ -34,7 +34,7 @@ namespace DotNetOutdated.Tests
                 .ReturnsAsync(availableVersions);
             
             _nuGetPackageResolutionService = new NuGetPackageResolutionService(nuGetPackageInfoService.Object);
-            }
+        }
 
         [Theory]
         [InlineData("1.2.0", VersionLock.None, PrereleaseReporting.Auto, "2.1.0")]

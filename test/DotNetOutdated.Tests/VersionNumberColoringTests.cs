@@ -1,19 +1,11 @@
 using DotNetOutdated.Models;
 using NuGet.Versioning;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace DotNetOutdated.Tests
 {
     public class VersionNumberColoringTests
     {
-        private readonly ITestOutputHelper _output;
-
-        public VersionNumberColoringTests(ITestOutputHelper output)
-        {
-            _output = output;
-        }
-
         [Theory]
         [InlineData("1.2.3    ", "2.0.0    ")]
         [InlineData("1.0.13   ", "2.0.1    ")]

@@ -54,7 +54,6 @@ namespace DotNetOutdated.Tests
             Assert.Equal($"{resolved} -> {latest.Substring(0, firstDot)}[Yellow]{latest.Substring(firstDot)}[White]", console.WrittenOut);
         }
 
-
         [Theory]
         [InlineData("1.2.3    ", "1.2.4    ")]
         [InlineData("1.0.13   ", "1.0.20   ")]

@@ -22,7 +22,7 @@ namespace DotNetOutdated.Services
             _dotNetRestoreService = dotNetRestoreService;
             _fileSystem = fileSystem;
         }
-        
+
         public List<Project> AnalyzeProject(string projectPath, bool includeTransitiveDependencies, int transitiveDepth)
         {
             var dependencyGraph = _dependencyGraphService.GenerateDependencyGraph(projectPath);
@@ -34,7 +34,7 @@ namespace DotNetOutdated.Services
             {
                 // Restore the packages
                 _dotNetRestoreService.Restore(packageSpec.FilePath);
-                
+
                 // Load the lock file
                 var lockFilePath = _fileSystem.Path.Combine(packageSpec.RestoreMetadata.OutputPath, "project.assets.json");
                 var lockFile = LockFileUtilities.GetLockFile(lockFilePath, NullLogger.Instance);

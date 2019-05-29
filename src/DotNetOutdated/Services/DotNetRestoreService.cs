@@ -12,10 +12,10 @@ namespace DotNetOutdated.Services
             _dotNetRunner = dotNetRunner;
             _fileSystem = fileSystem;
         }
-        
+
         public RunStatus Restore(string projectPath)
         {
-            var arguments = new[] {"restore", $"\"{projectPath}\""};
+            var arguments = new[] { "restore", $"\"{projectPath}\"" };
 
             return _dotNetRunner.Run(_fileSystem.Path.GetDirectoryName(projectPath), arguments);
         }

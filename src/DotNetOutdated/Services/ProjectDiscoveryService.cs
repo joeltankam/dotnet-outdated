@@ -14,14 +14,14 @@ namespace DotNetOutdated.Services
         {
             _fileSystem = fileSystem;
         }
-        
+
         public string DiscoverProject(string path)
         {
             if (!(_fileSystem.File.Exists(path) || _fileSystem.Directory.Exists(path)))
                 throw new CommandValidationException(string.Format(Resources.ValidationErrorMessages.DirectoryOrFileDoesNotExist, path));
 
             var fileAttributes = _fileSystem.File.GetAttributes(path);
-            
+
             // If a directory was passed in, search for a .sln or .csproj file
             if (fileAttributes.HasFlag(FileAttributes.Directory))
             {
@@ -29,15 +29,15 @@ namespace DotNetOutdated.Services
                 var solutionFiles = _fileSystem.Directory.GetFiles(path, "*.sln");
                 if (solutionFiles.Length == 1)
                     return _fileSystem.Path.GetFullPath(solutionFiles[0]);
-                
+
                 if (solutionFiles.Length > 1)
                     throw new CommandValidationException(string.Format(Resources.ValidationErrorMessages.DirectoryContainsMultipleSolutions, path));
-                
+
                 // We did not find any solutions, so try and find individual projects
                 var projectFiles = _fileSystem.Directory.GetFiles(path, "*.csproj").Concat(_fileSystem.Directory.GetFiles(path, "*.fsproj")).ToArray();
                 if (projectFiles.Length == 1)
                     return _fileSystem.Path.GetFullPath(projectFiles[0]);
-                
+
                 if (projectFiles.Length > 1)
                     throw new CommandValidationException(string.Format(Resources.ValidationErrorMessages.DirectoryContainsMultipleProjects, path));
 

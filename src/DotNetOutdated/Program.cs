@@ -55,11 +55,11 @@ namespace DotNetOutdated
 
         [Option(CommandOptionType.SingleValue, Description = "Defines how many levels deep transitive dependencies should be analyzed. " +
                                                              "Integer value (default = 1)",
-            ShortName="td", LongName = "transitive-depth")]
+            ShortName = "td", LongName = "transitive-depth")]
         public int TransitiveDepth { get; set; } = 1;
 
         [Option(CommandOptionType.SingleOrNoValue, Description = "Specifies whether outdated packages should be upgraded. " +
-                                                             "Possible values for <TYPE> is Auto (default) or Prompt.",
+                                                                 "Possible values for <TYPE> is Auto (default) or Prompt.",
             ShortName = "u", LongName = "upgrade", ValueName = "TYPE")]
         public (bool HasValue, UpgradeType UpgradeType) Upgrade { get; set; }
 
@@ -67,7 +67,7 @@ namespace DotNetOutdated
             ShortName = "f", LongName = "fail-on-updates")]
         public bool FailOnUpdates { get; set; } = false;
 
-        [Option(CommandOptionType.SingleValue, Description = "Specifies to only look at packages where the name contains the provided string.", 
+        [Option(CommandOptionType.SingleValue, Description = "Specifies to only look at packages where the name contains the provided string.",
             ShortName = "inc", LongName = "include")]
         public string FilterInclude { get; set; } = string.Empty;
 
@@ -139,7 +139,7 @@ namespace DotNetOutdated
 
                 // Get all the projects
                 console.Write("Discovering projects...");
-                
+
                 var projectPath = _projectDiscoveryService.DiscoverProject(Path);
 
                 if (!console.IsOutputRedirected)
@@ -149,7 +149,7 @@ namespace DotNetOutdated
 
                 // Analyze the projects
                 console.Write("Analyzing project and restoring packages...");
-                
+
                 var projects = _projectAnalysisService.AnalyzeProject(projectPath, Transitive, TransitiveDepth);
 
                 if (!console.IsOutputRedirected)
@@ -200,13 +200,13 @@ namespace DotNetOutdated
             if (Upgrade.HasValue)
             {
                 console.WriteLine();
-            
+
                 var consolidatedPackages = projects.ConsolidatePackages();
 
                 foreach (var package in consolidatedPackages)
                 {
                     var upgrade = true;
-                    
+
                     if (Upgrade.UpgradeType == UpgradeType.Prompt)
                     {
                         var resolvedVersion = package.ResolvedVersion?.ToString() ?? "";
@@ -231,7 +231,7 @@ namespace DotNetOutdated
                         console.Write(package.Description, Constants.ReporingColors.PackageName);
                         console.Write("...");
                         console.WriteLine();
-                        
+
                         foreach (var project in package.Projects)
                         {
                             var status = _dotNetAddPackageService.AddPackage(project.ProjectFilePath, package.Name, project.Framework.ToString(), package.LatestVersion);
@@ -255,11 +255,11 @@ namespace DotNetOutdated
                 }
             }
         }
-        
+
         private static void PrintColorLegend(IConsole console)
         {
             console.WriteLine("Version color legend:");
-            
+
             console.Write("<red>".PadRight(8), Constants.ReporingColors.MajorVersionUpgrade);
             console.WriteLine(": Major version update or pre-release version. Possible breaking changes.");
             console.Write("<yellow>".PadRight(8), Constants.ReporingColors.MinorVersionUpgrade);
@@ -365,7 +365,7 @@ namespace DotNetOutdated
                     if (!string.IsNullOrEmpty(FilterInclude))
                         deps = deps.Where(d => d.Name.Contains(FilterInclude, StringComparison.InvariantCultureIgnoreCase));
                     if (!string.IsNullOrEmpty(FilterExclude))
-                        deps = deps.Where(d => !d.Name.Contains(FilterExclude, StringComparison.InvariantCultureIgnoreCase));                        
+                        deps = deps.Where(d => !d.Name.Contains(FilterExclude, StringComparison.InvariantCultureIgnoreCase));
 
                     var dependencies = deps.OrderBy(dependency => dependency.IsTransitive)
                         .ThenBy(dependency => dependency.Name)
@@ -393,7 +393,7 @@ namespace DotNetOutdated
                             ClearCurrentConsoleLine();
                     }
 
-                    if (outdatedDependencies.Count > 0) 
+                    if (outdatedDependencies.Count > 0)
                         outdatedFrameworks.Add(new AnalyzedTargetFramework(targetFramework.Name, outdatedDependencies));
                 }
 
@@ -454,7 +454,7 @@ namespace DotNetOutdated
             console.Write($"[{targetFramework.Name}]", Constants.ReporingColors.TargetFrameworkName);
             console.WriteLine();
         }
-        
+
         public static void ClearCurrentConsoleLine()
         {
             var currentLineCursor = Console.CursorTop;

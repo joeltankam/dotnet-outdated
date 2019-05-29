@@ -32,7 +32,7 @@ namespace DotNetOutdated
                 return title;
             }
         }
-        
+
         public bool IsAutoReferenced { get; set; }
 
         public bool IsTransitive { get; set; }

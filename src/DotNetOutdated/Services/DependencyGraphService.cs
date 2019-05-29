@@ -23,7 +23,7 @@ namespace DotNetOutdated.Services
             _dotNetRunner = dotNetRunner;
             _fileSystem = fileSystem;
         }
-        
+
         public DependencyGraphSpec GenerateDependencyGraph(string projectPath)
         {
             if (string.Equals(_fileSystem.Path.GetExtension(projectPath), ".sln", StringComparison.OrdinalIgnoreCase))
@@ -32,8 +32,8 @@ namespace DotNetOutdated.Services
             }
 
             var dgOutput = _fileSystem.Path.Combine(_fileSystem.Path.GetTempPath(), _fileSystem.Path.GetTempFileName());
-                
-            string[] arguments = {"msbuild", $"\"{projectPath}\"", "/t:GenerateRestoreGraphFile", $"/p:RestoreGraphOutputPath=\"{dgOutput}\""};
+
+            string[] arguments = { "msbuild", $"\"{projectPath}\"", "/t:GenerateRestoreGraphFile", $"/p:RestoreGraphOutputPath=\"{dgOutput}\"" };
 
             var runStatus = _dotNetRunner.Run(_fileSystem.Path.GetDirectoryName(projectPath), arguments);
 
@@ -56,7 +56,7 @@ namespace DotNetOutdated.Services
             var directoryPath = _fileSystem.Path.GetDirectoryName(solutionPath);
             string[] arguments = { "sln", $"\"{solutionPath}\"", "list" };
             var runStatus = _dotNetRunner.Run(directoryPath, arguments);
-            
+
             if (runStatus.IsSuccess)
             {
                 var dependencyGraphs = new List<DependencyGraphSpec>();

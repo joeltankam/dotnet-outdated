@@ -13,12 +13,12 @@ namespace DotNetOutdated.Services
             _dotNetRunner = dotNetRunner;
             _fileSystem = fileSystem;
         }
-        
+
         public RunStatus AddPackage(string projectPath, string packageName, string frameworkName, NuGetVersion version)
         {
             var projectName = _fileSystem.Path.GetFileName(projectPath);
-            
-            var arguments = new[] {"add", $"\"{projectName}\"", "package", packageName, "-v", version.ToString(), "-f", $"\"{frameworkName}\""};
+
+            var arguments = new[] { "add", $"\"{projectName}\"", "package", packageName, "-v", version.ToString(), "-f", $"\"{frameworkName}\"" };
 
             return _dotNetRunner.Run(_fileSystem.Path.GetDirectoryName(projectPath), arguments);
         }

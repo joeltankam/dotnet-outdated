@@ -111,7 +111,7 @@ namespace DotNetOutdated.Services
                         }
                     }
                 }
-                catch(HttpRequestException)
+                catch (HttpRequestException)
                 {
                     // Suppress HTTP errors when connecting to NuGet sources
                 }

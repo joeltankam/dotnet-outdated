@@ -33,7 +33,8 @@ namespace DotNetOutdated.Tests
         private ConsoleColor _foreground = ConsoleColor.White;
         public ConsoleColor ForegroundColor
         {
-            get => _foreground; set
+            get => _foreground;
+            set
             {
                 _foreground = value;
                 _out.Write($"[{value}]");
